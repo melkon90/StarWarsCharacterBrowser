@@ -1,6 +1,9 @@
 # StarWarsCharacterBrowser
 Brows through your favorite Star Wars characters! 
 
+## Objective 
+The objective is to develop an iOS app with React Native. 
+
 ## Motivation
 This project is created to learn more about developings apps with React Native. 
 
@@ -9,5 +12,8 @@ This project is created to learn more about developings apps with React Native.
 - Search or filter the list by using the search section
 - Select a character from the list to see more info 
 
-This readme explains how the Star Wars Character Browser app is built. 
-
+## Technologies used 
+**Built with**
+- Sublime Text
+- Visual Studio Code 
+- React Native using Expo 
