@@ -64,7 +64,7 @@ This app uses a 'FlatList' component for the listing. This code is placed in the
 - renderItem: this sets up the view that shows the first letter of the character in an circle shaped avater component, the name, sex and home planet 
 - keyExtrator: this sets the name as the key of the view 
 
-### Searching/Filter the Table 
+### Searching/Filtering the Table 
 This app uses the 'SearchBar' component from the React Native Elements library. There are two reasons for this choice:
 1. The UI of this component gives a native feeling to the user 
 2. It is a challenge to build a component that resembles the native iOS search bar within a short time
