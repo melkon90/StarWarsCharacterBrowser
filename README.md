@@ -26,6 +26,7 @@ Therefore, the switch to Visual Studio Code was made to enhance the ease of deve
 
 ## How the Code is Built 
 
+### Breaking the UI into a Component Hierarchy   
 According to Facebook, the first step is to break the UI into a component hierarchy, for ([example](https://reactjs.org/static/thinking-in-react-components-eb8bda25806a89ebdc838813bdfa3601-82965.png)
 I first started with drawing a mock up of the app on paper. The app contains two screens:
 1. The first screen shows the Star Wars Characters in a list. It also contains a searchbar at the top to allow the user to search and filter on characters. 
@@ -37,6 +38,7 @@ This results in the the following components:
 - Star Wars Table: displays and filters the data collection based on user input
 - CharacterRow: displays a row for each product
 
+### Identifying the Minimal Representation of UI State
 The next step is to identify the minimal (but complete) representation of UI state. 
 
 The following decision criteria is used: 
@@ -45,12 +47,30 @@ The following decision criteria is used:
 - Can you compute it based on any other state or props in your component? If so, it isn’t state.
 
 In this app, the UI state is represented with:
-- The original list of Star Wars characters (this is downloaded from the Internet through an API)
+- The original list of Star Wars characters (this is downloaded from the Internet through an API): the 'data' state
 - The search text the user has entered (this changes over time and can't be computed from anything) 
 
-Because of the importance of user experience, an activity indicator is added as state to indicate to the user that the app is downloading data from the backend. 
+Because of the importance of user experience, an activity indicator is presented to the user when the app starts to retrieve data from the backend. To track this, a 'Boolean' is added as state: isDownloading. Its value is for example true when the app starts and is false when the download finishes.  
 
 All the other pieces of data, e.g. the filtered list of characters, are props.
 
+### Integrating an API in React Native 
+This app calls an API to retrieve a JSON that contains all the required data. This is done via 'Fetch', which is placed in the 'componentDidMount'. The result of a Fetch is a 'Promise' with 'then' and 'catch'. Once the JSON is retrieved, its set into states, i.e. setting the boolean that indicates network activity to false and updating the array containing the JSON data. 
 
+### Showing Data in a Table
+This app uses a 'FlatList' component for the listing. This code is placed in the 'Render'. The 'Render' contains an 'if' to check network activity (via the Boolean). If there is no network acitivity, it continues to execute the code that calls the 'FlatList' component. This component requires several parameters:
+- data; this is the JSON containing the characters
+- ItemSeperatorComponent: this is a view to indicate the end of an item
+- renderItem: this sets up the view that shows the first letter of the character in an circle shaped avater component, the name, sex and home planet 
+- keyExtrator: this sets the name as the key of the view 
+
+### Searching/Filter the Table 
+This app uses the 'SearchBar' component from the React Native Elements library. There are two reasons for this choice:
+1. The UI of this component gives a native feeling to the user 
+2. It is a challenge to build a component that resembles the native iOS search bar within a short time
+Therefore, the 'react-native-elements' is installed using npm. 
+
+For the 'SearchBar' to work, an empty array is added to the state: charactersArray. 
+
+The ideal position of the 'SearchBar' is at the top of the 'FlatList'. Fortunately, the 'FlatList' has a prop to add custom components to its header. However, before the SearchBar can be added, a search function is needed. The search function filters the charactersArray, and updates the 'data' state based on the result. 
 
