@@ -74,3 +74,9 @@ For the 'SearchBar' to work, an empty array is added to the state: charactersArr
 
 The ideal position of the 'SearchBar' is at the top of the 'FlatList'. Fortunately, the 'FlatList' has a prop to add custom components to its header. However, before the SearchBar can be added, a search function is needed. The search function filters the charactersArray, and updates the 'data' state based on the result. 
 
+### Navigating through the app 
+The user can click on an item in the table and see more information about a certain character. For proper navigation, this app uses 'NavigatorIOS'. To make this work,  a new class is defined that sets up the NavigatorIOS and uses the class that contains the 'FlatList' as its initial route component. 
+
+To navigate to the new screen, a new class is defined first: CharacterDetail.
+This class is setup pretty straightforward. It receives the character details and it presents it in a (bulleted) list. 
+Next, a function is added to the 'FlatList' to identify row selections. Once a row is selected, the right item is identified, and a push to the next screen is initiated with the selected item as a prop. 
