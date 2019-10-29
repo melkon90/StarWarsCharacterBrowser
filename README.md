@@ -80,3 +80,6 @@ The user can click on an item in the table and see more information about a cert
 To navigate to the new screen, a new class is defined first: CharacterDetail.
 This class is setup pretty straightforward. It receives the character details and it presents it in a (bulleted) list. 
 Next, a function is added to the 'FlatList' to identify row selections. Once a row is selected, the right item is identified, and a push to the next screen is initiated with the selected item as a prop. 
+
+### Testing 
+Because of lack of time there are no tests included in this project. 
